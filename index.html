@@ -15,6 +15,12 @@
     </style>
   </head>
   <body>
-    <leaflet-map zoom="14"></leaflet-map>
+    <leaflet-map></leaflet-map>
+    <script>
+    window.addEventListener('polymer-ready', function () {
+      var leafletMap = document.querySelector('leaflet-map');
+      leafletMap.setAttribute('latitude',-8.034881);
+    });
+    </script>
   </body>
 </html>

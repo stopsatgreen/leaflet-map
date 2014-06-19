@@ -14,12 +14,26 @@
     	latitude: 51.522768,
       longitude: -0.078424,
       zoom: 16,
+      map: '',
       ready: function() {
-        var map = L.map(this.$.map).setView([this.latitude, this.longitude], this.zoom);
+        this.map = L.map(this.$.map).setView([this.latitude, this.longitude], this.zoom);
         var markerGroup = new L.layerGroup();
         L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
           attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
-        }).addTo(map);
+        }).addTo(this.map);
+      },
+      latitudeChanged : function () {
+        var latitude = this.getAttribute('latitude');
+        this.updateCenter(latitude);
+      },
+      longitudeChanged : function () {
+        var longitude = this.getAttribute('longitude');
+        this.updateCenter(longitude);
+      },
+      updateCenter: function (opt_lat, opt_lon) {
+        if (opt_lat === undefined) { opt_lat = this.latitude; }
+        if (opt_lon === undefined) { opt_lon = this.longitude; }
+        this.map.setView([opt_lat, opt_lon], 16);
       }
     });
   </script>
