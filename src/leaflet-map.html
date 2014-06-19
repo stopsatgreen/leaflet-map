@@ -1,0 +1,28 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<polymer-element name="leaflet-map" attributes="latitude longitude zoom">
+	<template>
+    <style>
+      :host { display: block; }
+      #map {
+        height: 100%;
+        width: 100%;
+      }
+    </style>
+    <div id="map"></div>
+  </template>
+  <script>
+    Polymer('leaflet-map', {
+    	latitude: 51.522768,
+      longitude: -0.078424,
+      zoom: 16,
+      ready: function() {
+        var map = L.map(this.$.map).setView([this.latitude, this.longitude], this.zoom);
+        var markerGroup = new L.layerGroup();
+        L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+          attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
+        }).addTo(map);
+      }
+    });
+  </script>
+</polymer-element>
