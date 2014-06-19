@@ -30,10 +30,14 @@
         var longitude = this.getAttribute('longitude');
         this.updateCenter(longitude);
       },
+      zoomChanged: function() {
+        var zoom = this.getAttribute('zoom');
+        this.map.setZoom(zoom);
+      },
       updateCenter: function (opt_lat, opt_lon) {
         if (opt_lat === undefined) { opt_lat = this.latitude; }
         if (opt_lon === undefined) { opt_lon = this.longitude; }
-        this.map.setView([opt_lat, opt_lon], 16);
+        this.map.setView([opt_lat, opt_lon], this.zoom);
       }
     });
   </script>
