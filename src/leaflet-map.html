@@ -11,32 +11,36 @@
   </template>
   <script>
     Polymer('leaflet-map', {
-    	latitude: 51.522768,
-      longitude: -0.078424,
-      zoom: 16,
-      map: '',
+    // Set default values
+    	latitude: 51.500446,
+      longitude: -0.125266,
+      zoom: 14,
+      map: '', // Set the scope
       ready: function() {
-        this.map = L.map(this.$.map).setView([this.latitude, this.longitude], this.zoom);
-        var markerGroup = new L.layerGroup();
+    // Create the map
+        this.map = L.map(this.$.map);
+        this.map.setView([this.latitude, this.longitude], this.zoom);
         L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
           attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
         }).addTo(this.map);
       },
+    // Attribute change observers
       latitudeChanged : function () {
         var latitude = this.getAttribute('latitude');
-        this.updateCenter(latitude);
+        this.updateCenter(latitude, '');
       },
       longitudeChanged : function () {
         var longitude = this.getAttribute('longitude');
-        this.updateCenter(longitude);
+        this.updateCenter('', longitude);
       },
       zoomChanged: function() {
         var zoom = this.getAttribute('zoom');
         this.map.setZoom(zoom);
       },
+    // Update the map
       updateCenter: function (opt_lat, opt_lon) {
-        if (opt_lat === undefined) { opt_lat = this.latitude; }
-        if (opt_lon === undefined) { opt_lon = this.longitude; }
+        if (opt_lat === '') { opt_lat = this.latitude; }
+        if (opt_lon === '') { opt_lon = this.longitude; }
         this.map.setView([opt_lat, opt_lon], this.zoom);
       }
     });

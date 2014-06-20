@@ -25,9 +25,9 @@ Include Leaflet.js stylesheet and script:
 
 Attribute   | Options  | Default         | Description
 ---         | ---      | ---             | ---
-`latitude`  | *string* | `51.522768`     | The latitude coordinate
-`longitude` | *string* | `-0.078424`     | The longitude coordinate
-`zoom`      | *int*    | `16`            | The zoom level of the panorama
+`latitude`  | *string* | `51.500446`     | The latitude coordinate
+`longitude` | *string* | `-0.125266`     | The longitude coordinate
+`zoom`      | *int*    | `14`            | The zoom level of the panorama
 
 ##Credits##
 
